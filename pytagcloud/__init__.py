@@ -385,7 +385,7 @@ def create_html_data(tags,
 
     color_map = {}
     for color_index, tag in enumerate(tags):
-        if not color_map.has_key(tag['color']):
+        if tag['color'] not in color_map:
             color_name = "c%d" % color_index
             hslcolor = colorsys.rgb_to_hls(tag['color'][0] / 255.0, 
                                            tag['color'][1] / 255.0, 
@@ -394,9 +394,9 @@ def create_html_data(tags,
             if lighter > 1: lighter = 1
             light = colorsys.hls_to_rgb(hslcolor[0], lighter, hslcolor[2])
             data['css'][color_name] = ('#%02x%02x%02x' % tag['color'], 
-                                       '#%02x%02x%02x' % (light[0] * 255,
-                                                          light[1] * 255,
-                                                          light[2] * 255))
+                                       '#%02x%02x%02x' % (int(light[0] * 255),
+                                                          int(light[1] * 255),
+                                                          int(light[2] * 255)))
             color_map[tag['color']] = color_name
 
     for stag in tag_store:
