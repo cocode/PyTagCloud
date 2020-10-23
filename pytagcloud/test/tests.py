@@ -8,6 +8,7 @@ import os
 import time
 import unittest
 
+
 class Test(unittest.TestCase):
     """
     Generate tag clouds and save them to <YOURHOME>/pytagclouds/
@@ -46,7 +47,7 @@ class Test(unittest.TestCase):
                              size=(900, 600),
                              background=(255, 255, 255, 255),
                              layout=layout, fontname='Lobster')
-        print "Duration: %d sec" % (time.time() - start)
+        print("Duration: %d sec" % (time.time() - start))
         
     def test_large_tag_image(self):
         start = time.time()
@@ -55,7 +56,7 @@ class Test(unittest.TestCase):
         create_tag_image(tags, os.path.join(self.test_output, 'cloud_large.png'), 
                          size=(900, 600), background=(0, 0, 0, 255), 
                          layout=LAYOUT_HORIZONTAL, fontname='Lobster')
-        print "Duration: %d sec" % (time.time() - start)
+        print("Duration: %d sec" % (time.time() - start))
 
     def test_create_html_data(self):
         """
@@ -87,6 +88,7 @@ class Test(unittest.TestCase):
         html_file = open(os.path.join(self.test_output, 'cloud.html'), 'w')
         html_file.write(html_text)
         html_file.close()       
+
 
 if __name__ == "__main__":
     unittest.main()

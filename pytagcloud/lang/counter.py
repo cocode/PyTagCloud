@@ -10,7 +10,9 @@ def get_tag_counts(text):
     This implementation is inspired by https://github.com/jdf/cue.language. Thanks Jonathan Feinberg.
     """
     words = map(lambda x:x.lower(), re.findall(r"[\w']+", text, re.UNICODE))
-    
+    # words above is an iterator, which would get consumed by guess(words),
+    # So, convert it to a list, as it would have been in python 2
+    words = [word for word in words]
     s = StopWords()     
     s.load_language(s.guess(words))
     
@@ -20,5 +22,5 @@ def get_tag_counts(text):
         if not s.is_stop_word(word) and len(word) > 1:
             counted[word] += 1
       
-    return sorted(counted.iteritems(), key=itemgetter(1), reverse=True)
+    return sorted(counted.items(), key=itemgetter(1), reverse=True)
     
